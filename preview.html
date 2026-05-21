@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Royal Barber | Preview local</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: Inter, Segoe UI, Arial, sans-serif;
+        background: #070707;
+        color: #f8f5ed;
+      }
+      a { color: inherit; text-decoration: none; }
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 16px clamp(18px, 4vw, 56px);
+        border-bottom: 1px solid rgba(255,255,255,.1);
+        background: rgba(7,7,7,.88);
+        backdrop-filter: blur(16px);
+      }
+      .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; }
+      .mark {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: #d6a84f;
+        color: #070707;
+        font-size: 24px;
+      }
+      nav { display: flex; gap: 8px; flex-wrap: wrap; }
+      nav a {
+        padding: 10px 14px;
+        border-radius: 999px;
+        color: rgba(255,255,255,.72);
+        background: rgba(255,255,255,.05);
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .hero {
+        min-height: 690px;
+        display: grid;
+        align-items: center;
+        padding: 92px clamp(18px, 4vw, 56px);
+        background:
+          linear-gradient(90deg, rgba(7,7,7,.95), rgba(7,7,7,.68), rgba(7,7,7,.2)),
+          url("https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1800&q=85") center/cover;
+      }
+      .hero div { max-width: 780px; }
+      .kicker {
+        display: inline-block;
+        border: 1px solid rgba(214,168,79,.45);
+        border-radius: 999px;
+        padding: 10px 14px;
+        color: #d6a84f;
+        background: rgba(214,168,79,.1);
+        font-size: 13px;
+        font-weight: 900;
+        letter-spacing: .18em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 24px 0 18px;
+        font-size: clamp(54px, 10vw, 112px);
+        line-height: .92;
+        letter-spacing: -3px;
+      }
+      .lead {
+        max-width: 680px;
+        color: rgba(255,255,255,.72);
+        font-size: 19px;
+        line-height: 1.7;
+      }
+      .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 14px;
+        padding: 15px 22px;
+        font-weight: 900;
+      }
+      .primary { background: #d6a84f; color: #080808; }
+      .secondary { border: 1px solid rgba(255,255,255,.15); background: rgba(255,255,255,.07); }
+      section { padding: 72px clamp(18px, 4vw, 56px); }
+      .title { max-width: 780px; margin: 0 auto 36px; text-align: center; }
+      .title h2 { margin: 10px 0 0; font-size: clamp(32px, 5vw, 52px); }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+        max-width: 1220px;
+        margin: 0 auto;
+      }
+      .card {
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 20px;
+        background: rgba(255,255,255,.045);
+        box-shadow: 0 24px 80px rgba(214,168,79,.13);
+      }
+      .card img { width: 100%; height: 230px; object-fit: cover; display: block; }
+      .card-content { padding: 22px; }
+      .row { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+      .price {
+        border-radius: 999px;
+        background: #d6a84f;
+        color: #070707;
+        padding: 6px 10px;
+        font-weight: 900;
+        white-space: nowrap;
+      }
+      .muted { color: rgba(255,255,255,.62); line-height: 1.6; }
+      .booking {
+        max-width: 1120px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+        border: 1px solid rgba(255,255,255,.1);
+        border-radius: 28px;
+        padding: 24px;
+        background: rgba(255,255,255,.045);
+      }
+      label { display: grid; gap: 8px; font-weight: 800; color: rgba(255,255,255,.72); }
+      input, select {
+        width: 100%;
+        border: 1px solid rgba(255,255,255,.12);
+        border-radius: 13px;
+        background: rgba(0,0,0,.35);
+        color: white;
+        padding: 14px;
+      }
+      form { display: grid; gap: 14px; }
+      .summary {
+        border: 1px solid rgba(214,168,79,.22);
+        border-radius: 18px;
+        padding: 24px;
+        background: rgba(0,0,0,.28);
+      }
+      footer {
+        border-top: 1px solid rgba(255,255,255,.1);
+        padding: 34px;
+        text-align: center;
+        color: rgba(255,255,255,.48);
+      }
+      .whatsapp {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        display: grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 999px;
+        background: #22c55e;
+        color: white;
+        font-size: 25px;
+        box-shadow: 0 18px 50px rgba(0,0,0,.35);
+      }
+      @media (max-width: 850px) {
+        header { align-items: flex-start; flex-direction: column; }
+        .grid, .booking { grid-template-columns: 1fr; }
+        .hero { min-height: 620px; background: linear-gradient(180deg, rgba(7,7,7,.82), rgba(7,7,7,.97)), url("https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1200&q=85") center/cover; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="brand" href="#home"><span class="mark">♛</span><span>Royal Barber<br><small style="color:rgba(255,255,255,.52)">Premium grooming</small></span></a>
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#barbeiros">Barbeiros</a>
+        <a href="#agendamento">Agendamento</a>
+      </nav>
+    </header>
+    <main id="home">
+      <section class="hero">
+        <div>
+          <span class="kicker">Experiência premium</span>
+          <h1>Royal Barber</h1>
+          <p class="lead">Cortes precisos, barba impecável e agendamento online em uma barbearia feita para quem valoriza tempo, estilo e presença.</p>
+          <div class="actions">
+            <a class="btn primary" href="#agendamento">Agendar Horário</a>
+            <a class="btn secondary" target="_blank" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Royal%20Barber.">WhatsApp</a>
+          </div>
+        </div>
+      </section>
+      <section id="servicos">
+        <div class="title"><span class="kicker">Serviços</span><h2>Ritual completo de barbearia</h2></div>
+        <div class="grid">
+          <article class="card"><img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=80" alt="Corte social"><div class="card-content"><div class="row"><h3>Corte social</h3><span class="price">R$ 55</span></div><p class="muted">Acabamento clássico, tesoura e máquina com finalização premium.</p></div></article>
+          <article class="card"><img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=900&q=80" alt="Degradê"><div class="card-content"><div class="row"><h3>Degradê</h3><span class="price">R$ 65</span></div><p class="muted">Fade moderno com transições limpas e alinhamento preciso.</p></div></article>
+          <article class="card"><img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80" alt="Combo corte e barba"><div class="card-content"><div class="row"><h3>Combo corte + barba</h3><span class="price">R$ 95</span></div><p class="muted">Experiência completa Royal com corte, barba e finalização.</p></div></article>
+        </div>
+      </section>
+      <section id="barbeiros">
+        <div class="title"><span class="kicker">Time</span><h2>Barbeiros especialistas</h2></div>
+        <div class="grid">
+          <article class="card"><img src="https://images.pexels.com/photos/3998414/pexels-photo-3998414.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Rafael King"><div class="card-content"><h3>Rafael King</h3><p class="muted">Degradê e freestyle<br>09:00, 10:00, 11:00, 14:00, 16:00</p></div></article>
+          <article class="card"><img src="https://images.pexels.com/photos/3998429/pexels-photo-3998429.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Bruno Royal"><div class="card-content"><h3>Bruno Royal</h3><p class="muted">Barba clássica<br>08:30, 09:30, 13:30, 17:00, 19:00</p></div></article>
+          <article class="card"><img src="https://images.pexels.com/photos/7697376/pexels-photo-7697376.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Diego Prime"><div class="card-content"><h3>Diego Prime</h3><p class="muted">Corte social e visagismo<br>09:00, 11:30, 15:30, 18:30</p></div></article>
+        </div>
+      </section>
+      <section id="agendamento">
+        <div class="title"><span class="kicker">Agendamento</span><h2>Reserve seu horário</h2></div>
+        <div class="booking">
+          <form onsubmit="event.preventDefault(); const nome=document.querySelector('#nome').value || 'Cliente'; const servico=document.querySelector('#servico').value; const hora=document.querySelector('#hora').value; window.open('https://wa.me/5511999999999?text='+encodeURIComponent('Olá, meu nome é '+nome+'. Gostaria de confirmar meu horário para '+servico+' às '+hora+'.'), '_blank'); alert('Preview: no app React completo este agendamento é salvo no MongoDB.');">
+            <label>Serviço<select id="servico"><option>corte degradê</option><option>corte social</option><option>barba</option><option>combo corte + barba</option></select></label>
+            <label>Barbeiro<select><option>Rafael King</option><option>Bruno Royal</option><option>Diego Prime</option></select></label>
+            <label>Data<input type="date" required></label>
+            <label>Horário<select id="hora"><option>09:00</option><option>10:00</option><option>14:00</option><option>16:00</option></select></label>
+            <label>Nome<input id="nome" placeholder="Seu nome" required></label>
+            <label>Telefone<input placeholder="(11) 99999-9999" required></label>
+            <button class="btn primary" type="submit">Confirmar agendamento</button>
+          </form>
+          <div class="summary">
+            <span class="kicker">Resumo</span>
+            <h2>Experiência Royal</h2>
+            <p class="muted">Esta é uma prévia local sem build. O projeto completo React + Express + MongoDB está em frontend/ e backend/.</p>
+            <p class="muted"><strong>Total:</strong> a partir de R$ 55</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>Royal Barber - Barbearia premium com agendamento online.</footer>
+    <a class="whatsapp" target="_blank" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20um%20hor%C3%A1rio%20na%20Royal%20Barber.">☏</a>
+  </body>
+</html>
